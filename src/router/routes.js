@@ -4,7 +4,7 @@ import Main from '../views/Main.vue';
 
 const routes = [
     { path: '/', component: Login, name: 'Login' },
-    { path: '/oauth/google/callback', component: Callback, name: 'Callback' },
+    { path: '/login-success', component: Callback, name: 'Callback' },
     { path: '/main', component: Main, name: 'Main' },
 ];
 

@@ -1,45 +1,32 @@
 <template>
   <div class="callback-page">
-    <h1>로딩 중...</h1>
+    <h1>로그인 완료</h1>
+    <p>Access Token: {{ accessToken }}</p>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
-  async created() {
+  data() {
+    return {
+      accessToken: null
+    };
+  },
+  created() {
+    // URL의 query string에서 accessToken 가져오기
     const urlParams = new URLSearchParams(window.location.search);
-    const approvalCode = urlParams.get('code');
-    const data = {
-      authorizationCode: approvalCode,
-      redirectUrl: import.meta.env.VITE_GOOGLE_REDIRECT_URI,
-    }
-
-    if (approvalCode) {
-      try {
-        const response = await axios.post('http://localhost:8080/auth/join', data);
-        console.log(response);
-        const token = response.data.token;
-
-        // JWT 토큰을 저장하고 main 페이지로 이동
-        localStorage.setItem('token', token);
-        await this.$router.push({name: 'Main'});
-      } catch (error) {
-        console.error('Google 로그인 실패:', error);
-      }
-    } else {
-      console.error('구글 로그인 코드가 없습니다.');
-    }
-  }
+    this.accessToken = urlParams.get('accessToken');
+  },
 };
 </script>
 
 <style scoped>
 .callback-page {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  text-align: center;
 }
 </style>

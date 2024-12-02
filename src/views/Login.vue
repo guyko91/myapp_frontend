@@ -6,7 +6,7 @@
 
   <div class="login-page">
     <div class="login-container">
-      <h1>구글 계정으로 로그인</h1>
+      <h1>구글 로그인</h1>
       <p class="description">서비스에 로그인하여 더 많은 기능을 이용하세요.</p>
       <button @click="googleLogin">Google 로그인</button>
     </div>
@@ -14,14 +14,11 @@
 </template>
 
 <script>
-
 export default {
   methods: {
     googleLogin() {
-      const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-      const redirectUri = import.meta.env.VITE_GOOGLE_REDIRECT_URI;
-      const scope = 'profile email https://www.googleapis.com/auth/calendar.readonly';
-      window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&access_type=offline&response_type=code`;
+      // 서버에서 구글 로그인 연동 처리 후 리다이렉트
+      window.location.href = 'http://localhost:8080/oauth2/authorization/google';
     }
   }
 };
