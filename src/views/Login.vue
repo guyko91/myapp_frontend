@@ -9,6 +9,8 @@
       <h1>구글 로그인</h1>
       <p class="description">서비스에 로그인하여 더 많은 기능을 이용하세요.</p>
       <button @click="googleLogin">Google 로그인</button>
+      <button @click="facebookLogin">Facebook 로그인</button>
+      <button @click="kakaoLogin">KAKAO 로그인</button>
     </div>
   </div>
 </template>
@@ -19,6 +21,14 @@ export default {
     googleLogin() {
       // 서버에서 구글 로그인 연동 처리 후 리다이렉트
       window.location.href = 'http://localhost:8080/oauth2/authorization/google';
+    },
+    facebookLogin() {
+      // 서버에서 페이스북 로그인 연동 처리 후 리다이렉트
+      window.location.href = 'http://localhost:8080/oauth2/authorization/facebook';
+    },
+    kakaoLogin() {
+      // 서버에서 카카오 로그인 연동 처리 후 리다이렉트
+      window.location.href = 'http://localhost:8080/oauth2/authorization/kakao';
     }
   }
 };
