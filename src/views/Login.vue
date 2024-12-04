@@ -97,12 +97,15 @@ export default {
             password: this.password
           })
           .then(response => {
+
+            console.log(response.headers);
+
             const code = response.data.code;
             const message = response.data.message;
 
             if (code === '20000000') {
-              // 회원가입 성공 후 처리 (예: 리디렉션, 알림 등)
-              localStorage.setItem('accessToken', response.data.data.accessToken);
+              // 응답의 헤더에서 Authorization 값을 가져오기
+              localStorage.setItem('accessToken', response.headers['authorization']);
 
               // Main.vue로 리다이렉트
               this.$router.push({ name: "Main" });
@@ -143,8 +146,8 @@ export default {
             const message = response.data.message;
 
             if (code === '20000000') {
-              // 회원가입 성공 후 처리 (예: 리디렉션, 알림 등)
-              localStorage.setItem('accessToken', response.data.data.accessToken);
+              // 응답의 헤더에서 Authorization 값을 가져오기
+              localStorage.setItem('accessToken', response.headers['authorization']);
 
               // Main.vue로 리다이렉트
               this.$router.push({ name: "Main" });
