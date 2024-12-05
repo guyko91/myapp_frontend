@@ -21,7 +21,12 @@ export default {
     async logout() {
       try {
         // 서버에 로그아웃 요청 (accessToken을 보내지 않음)
-        const response = await axios.post("http://localhost:8080/auth/logout");
+        await axios
+            .post("http://localhost:8080/auth/logout", null, {
+              headers: {
+                Authorization: `${this.accessToken}`,
+              },
+            });
 
         // 로그아웃 성공 시 localStorage에서 accessToken 삭제
         localStorage.removeItem("accessToken");
