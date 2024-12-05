@@ -6,6 +6,9 @@
 
     <!-- 로그아웃 버튼 -->
     <button @click="logout" class="logout-button">로그아웃</button>
+
+    <!-- 테스트 서버 호출 버튼 -->
+    <button @click="testCall" class="logout-button">보호된 자원 요청</button>
   </div>
 </template>
 
@@ -38,6 +41,22 @@ export default {
         // 에러 처리 (예: 알림 메시지 추가)
       }
     },
+    async testCall() {
+      try {
+        // 서버에 보호된 자원 요청
+        const response = await axios.get("http://localhost:8080/test/hello", {
+          headers: {
+            Authorization: `${this.accessToken}`,
+          },
+        });
+
+        // 응답 데이터 출력
+        console.log("보호된 자원 요청 결과:", response.data);
+      } catch (error) {
+        console.error("보호된 자원 요청 실패:", error);
+        // 에러 처리 (예: 알림 메시지 추가)
+      }
+    }
   },
 };
 </script>
