@@ -76,7 +76,7 @@ export default {
         { name: 'Google', url: 'http://localhost:8080/oauth2/authorization/google', class: 'google', icon: 'fab fa-google' },
         { name: 'Facebook', url: 'http://localhost:8080/oauth2/authorization/facebook', class: 'facebook', icon: 'fab fa-facebook-f' },
         { name: 'Kakao', url: 'http://localhost:8080/oauth2/authorization/kakao', class: 'kakao', icon: 'fas fa-comment' },
-        // { name: 'Naver', url: 'http://localhost:8080/oauth2/authorization/naver', class: 'naver', icon: 'fas fa-comment-dots' }
+        { name: 'Naver', url: 'http://localhost:8080/oauth2/authorization/naver', class: 'naver', icon: 'fas fa-comment-dots' }
       ]
     };
   },
@@ -97,8 +97,7 @@ export default {
             password: this.password
           })
           .then(response => {
-
-            console.log(response.headers);
+            console.log(response);
 
             const code = response.data.code;
             const message = response.data.message;
@@ -142,6 +141,8 @@ export default {
             email: this.signupEmail
           })
           .then((response) => {
+            console.log(response);
+
             const code = response.data.code;
             const message = response.data.message;
 

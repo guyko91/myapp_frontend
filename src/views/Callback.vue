@@ -2,6 +2,7 @@
   <div class="callback-page">
     <h1>로그인 완료</h1>
     <p>Access Token: {{ accessToken }}</p>
+    <button @click="moveToMain">메인 화면으로 이동</button>
   </div>
 </template>
 
@@ -15,14 +16,20 @@ export default {
   created() {
     // URL의 query string에서 accessToken 가져오기
     const urlParams = new URLSearchParams(window.location.search);
+    console.log(urlParams);
     this.accessToken = urlParams.get('accessToken');
 
     // 로컬 스토리지에 accessToken 저장
     localStorage.setItem('accessToken', this.accessToken);
 
     // Main 화면으로 리다이렉트
-    this.$router.push({ name: 'Main' });
+    // this.$router.push({ name: 'Main' });
   },
+  methods: {
+    moveToMain() {
+      this.$router.push({ name: 'Main' });
+    }
+  }
 };
 </script>
 
